@@ -1,0 +1,47 @@
+.nav {
+  display: flex;
+  font-size: 18px;
+  height: 70px;
+  color: #fff;
+  background-color: #498467;
+}
+
+.container {
+  display: flex;
+  width: 1200px;
+  margin: auto;
+}
+
+.nav ul li ul {
+}
+
+.menu {
+  display: flex;
+  width: 1200px;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+
+  position: relative;
+}
+
+.nav ul li a {
+  border: 1px solid transparent;
+}
+
+.dropdownMenu {
+  margin-top: 20%;
+  background-color: #fff;
+}
+
+.dropdownMenu li {
+  padding: 3px;
+}
+
+.nav a {
+  color: #592941;
+}
+
+.nav a:hover {
+  color: #B2D3A8;
+}

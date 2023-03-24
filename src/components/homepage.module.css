@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.none {
+  text-decoration: none;
+}
+
+.blur {
+  filter: blur(10px);
+
+}
+
+.banner {
+  width: 1200px;
+  height: 600px;
+  margin: auto;
+  padding-top: 40px;
+}
+
+.banner img {
+  position: absolute;
+  width: 1200px;
+  height: 600px;
+  z-index: -1;
+}
