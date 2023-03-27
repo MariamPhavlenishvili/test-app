@@ -27,6 +27,16 @@ const Popup = ({}) => {
     if (checked && value === "fingerprint") {
       setAgreeConditions({ ...agreeConditions, fingerprintTracking: true });
     }
+
+    if (!checked && value === "mouse") {
+      setAgreeConditions({ ...agreeConditions, mouseTracking: false });
+    }
+
+    if (!checked && value === "fingerprint") {
+      setAgreeConditions({ ...agreeConditions, fingerprintTracking: false });
+    }
+
+    console.log(agreeConditions)
   };
 
   const onAgreeButtonClick = () => {
@@ -60,16 +70,6 @@ const Popup = ({}) => {
                 onChange={(e) => handleChange(e.target.checked, e.target.value)}
               />
               <label htmlFor="mouse">mouse</label>
-            </div>
-            <div className={styles.checkbox}>
-              <input
-                type="checkbox"
-                name="keyboard"
-                id="keyboard"
-                value={"keyboard"}
-                onChange={(e) => handleChange(e.target.checked, e.target.value)}
-              />
-              <label htmlFor="keyboard">keyboard</label>
             </div>
             <div className={styles.checkbox}>
               <input
