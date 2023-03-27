@@ -4,8 +4,8 @@ import styles from "./popup.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface conditionsObject {
-  mouseTracking: Boolean;
-  fingerprintTracking: Boolean;
+  mouseTracking: boolean;
+  fingerprintTracking: boolean;
 }
 
 const Popup = ({}) => {
