@@ -3,25 +3,40 @@ import { useState, useEffect } from "react";
 import styles from "./popup.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 
+interface conditionsObject {
+  mouseTracking: Boolean;
+  fingerprintTracking: Boolean;
+}
+
 const Popup = ({}) => {
   const [close, setClose] = useState(false);
-  const [agreeConditions, setAgreeConditions] = useState<string[]>([]);
+  const [agreeConditions, setAgreeConditions] = useState<conditionsObject>({
+    mouseTracking: false,
+    fingerprintTracking: false,
+  });
 
   const closePopup = () => {
     setClose(!close);
   };
 
   const handleChange = (checked: boolean, value: string) => {
-    if (checked) {
-      setAgreeConditions([...agreeConditions, value]);
+    if (checked && value === "mouse") {
+      setAgreeConditions({ ...agreeConditions, mouseTracking: true });
     }
 
-    if (!checked) {
-      setAgreeConditions(agreeConditions.filter((x) => x === value));
+    if (checked && value === "fingerprint") {
+      setAgreeConditions({ ...agreeConditions, fingerprintTracking: true });
     }
   };
 
   const onAgreeButtonClick = () => {
+    const tracking = window._dataHub.dataHubService.setConsent({
+      mouseTracking: agreeConditions.mouseTracking,
+      fingerprintTracking: agreeConditions.fingerprintTracking,
+    });
+
+    console.log(tracking);
+
     setClose(!close);
   };
 
