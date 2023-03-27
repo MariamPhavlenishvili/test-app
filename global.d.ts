@@ -22,12 +22,12 @@ export interface IDataHubService {
   setSiteName(siteName: SiteName): boolean;
   getSiteName(): null | SiteName;
   clearSiteName(): boolean;
-  setSearchQuery(searchQuery: string): boolean;
+  setSearchQuery(searchQuery: string): null | string;
   getSearchQuery(): null | string;
-  clearSearchQuery(): null | string;
-  setCategory(category: null | string[]): boolean;
+  clearSearchQuery(): boolean;
+  setCategory(category: null | string[]): null | string[];
   getCategory(): null | string[];
-  clearCategory(): null | string[];
+  clearCategory(): boolean;
 }
 
 declare global {
