@@ -7,7 +7,8 @@ import { categories } from "../menu/categories";
 
 interface Category {
   mainCategory: string;
-  subcategory: string[];
+  subCategory: string;
+  subSubCategory: string;
 }
 
 const Navbar = () => {
@@ -18,7 +19,8 @@ const Navbar = () => {
   });
   const [category, setCategory] = useState<Category>({
     mainCategory: "",
-    subcategory: [],
+    subCategory: "",
+    subSubCategory: "",
   });
 
   const handleCategoryOpen = (categoryName: string) => {
@@ -27,47 +29,34 @@ const Navbar = () => {
   };
 
   const handleCategoryClose = () => {
-    setCategory({ mainCategory: "", subcategory: [] });
+    setCategory({ mainCategory: "", subCategory: "", subSubCategory: "" });
     setMainCategory("");
   };
 
-  const handleSubcategoryOpen = (categoryName: string) => {
+  const handleSubcategoryOpen = (subCategoryName: string) => {
     setCategory({
       ...category,
-      subcategory: [...category.subcategory, categoryName],
+      subCategory: subCategoryName,
     });
-    setSubcategoryMenu({ category: categoryName, open: true });
+    setSubcategoryMenu({ category: subCategoryName, open: true });
   };
 
-  const handleSubcategoryClose = (categoryName: string) => {
-    const removedCategory = category.subcategory.filter(
-      (subCategory) => subCategory !== categoryName
-    );
-    setCategory({ ...category, subcategory: removedCategory });
-    setSubcategoryMenu({ category: categoryName, open: false });
+  const handleSubcategoryClose = (subCategoryName: string) => {
+    setCategory({ ...category, subCategory: "" });
+    setSubcategoryMenu({ category: subCategoryName, open: false });
   };
 
-  const handleSubSubCategoryOpen = (categoryName: string) => {
-    setCategory({
-      ...category,
-      subcategory: [...category.subcategory, categoryName],
-    });
-  };
-
-  const handleSubSubCategoryClose = (categoryName: string) => {
-    const removedCategory = category.subcategory.filter(
-      (subCategory) => subCategory !== categoryName
-    );
-    setCategory({ ...category, subcategory: removedCategory });
-  };
-
-  const onClick = () => {
+  const onClick = (subsubCategory: string | null) => {
+    console.log(category.mainCategory);
     window._dataHub.dataHubService.setSiteName("myauto" as any);
 
-    window._dataHub.dataHubService.setCategory({
+    const tracking = window._dataHub.dataHubService.setCategory({
       mainCategory: category.mainCategory,
-      subcategory: category.subcategory,
+      subCategory: category.subCategory ? category.subCategory : null,
+      subSubCategory: subsubCategory ? subsubCategory : null,
     });
+
+    console.log(tracking);
   };
 
   return (
@@ -94,7 +83,7 @@ const Navbar = () => {
                     >
                       <Link
                         to={`/category/${category}/${subcategory}`}
-                        onClick={onClick}
+                        onClick={() => onClick(null)}
                       >
                         {subcategory}
                       </Link>
@@ -105,16 +94,16 @@ const Navbar = () => {
                               (subsubcategory) => (
                                 <li
                                   key={subsubcategory}
-                                  onMouseEnter={() =>
-                                    handleSubSubCategoryOpen(subsubcategory)
-                                  }
-                                  onMouseLeave={() =>
-                                    handleSubSubCategoryClose(subsubcategory)
-                                  }
+                                  // onMouseEnter={() =>
+                                  //   handleSubSubCategoryOpen(subsubcategory)
+                                  // }
+                                  // onMouseLeave={() =>
+                                  //   handleSubSubCategoryClose(subsubcategory)
+                                  // }
                                 >
                                   <Link
                                     to={`/category/${category}/${subcategory}/${subsubcategory}`}
-                                    onClick={onClick}
+                                    onClick={() => onClick(subsubcategory)}
                                   >
                                     {subsubcategory}
                                   </Link>
