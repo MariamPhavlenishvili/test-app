@@ -7,8 +7,13 @@ function SearchBar() {
   const [keyword, setKeyword] = useState("")
 
   const onChange = (value: string) => {
+    window._dataHub.dataHubService.setSearchQuery(value)
     setKeyword(value)
   };
+
+  const onSearch = () => {
+    window._dataHub.dataHubService.setSearchQuery(keyword);
+  }
 
   return (
     <div className={styles.searchbar}>
@@ -17,7 +22,7 @@ function SearchBar() {
         placeholder="Search..."
         onChange={(e) => onChange(e.target.value)}
       />
-      <button type="submit">
+      <button type="submit" onClick={onSearch}>
         <SearchIcon className={styles.icon} />
       </button>
     </div>

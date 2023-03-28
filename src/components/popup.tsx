@@ -36,16 +36,14 @@ const Popup = ({}) => {
       setAgreeConditions({ ...agreeConditions, fingerprintTracking: false });
     }
 
-    console.log(agreeConditions)
   };
 
   const onAgreeButtonClick = () => {
-    const tracking = window._dataHub.dataHubService.setConsent({
+    window._dataHub.dataHubService.setSiteName("myauto" as any);
+    window._dataHub.dataHubService.setConsent({
       mouseTracking: agreeConditions.mouseTracking,
       fingerprintTracking: agreeConditions.fingerprintTracking,
     });
-
-    console.log(tracking);
 
     setClose(!close);
   };

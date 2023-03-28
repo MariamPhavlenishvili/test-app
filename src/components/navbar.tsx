@@ -3,118 +3,132 @@ import { Link } from "react-router-dom";
 import SearchBar from "./search";
 
 import styles from "./navbar.module.css";
+import { categories } from "../menu/categories";
+
+interface Category {
+  mainCategory: string;
+  subcategory: string[];
+}
 
 const Navbar = () => {
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const [subcategory, setSubcategory] = useState({ category: "", open: false });
+  const [mainCategory, setMainCategory] = useState("");
+  const [subcategoryMenu, setSubcategoryMenu] = useState({
+    category: "",
+    open: false,
+  });
+  const [category, setCategory] = useState<Category>({
+    mainCategory: "",
+    subcategory: [],
+  });
 
-  const handleSubmenuOpen = () => {
-    setIsSubmenuOpen(true);
+  const handleCategoryOpen = (categoryName: string) => {
+    setCategory({ ...category, mainCategory: categoryName });
+    setMainCategory(categoryName);
   };
 
-  const handleSubmenuClose = () => {
-    setIsSubmenuOpen(false);
+  const handleCategoryClose = () => {
+    setCategory({ mainCategory: "", subcategory: [] });
+    setMainCategory("");
   };
 
-  const handleOpenSubcategory = (category: string) => {
-    setSubcategory({ category: category, open: true });
+  const handleSubcategoryOpen = (categoryName: string) => {
+    setCategory({
+      ...category,
+      subcategory: [...category.subcategory, categoryName],
+    });
+    setSubcategoryMenu({ category: categoryName, open: true });
   };
 
-  const handleCloseSubcategory = (category: string) => {
-    setSubcategory({ category: category, open: false });
+  const handleSubcategoryClose = (categoryName: string) => {
+    const removedCategory = category.subcategory.filter(
+      (subCategory) => subCategory !== categoryName
+    );
+    setCategory({ ...category, subcategory: removedCategory });
+    setSubcategoryMenu({ category: categoryName, open: false });
+  };
+
+  const handleSubSubCategoryOpen = (categoryName: string) => {
+    setCategory({
+      ...category,
+      subcategory: [...category.subcategory, categoryName],
+    });
+  };
+
+  const handleSubSubCategoryClose = (categoryName: string) => {
+    const removedCategory = category.subcategory.filter(
+      (subCategory) => subCategory !== categoryName
+    );
+    setCategory({ ...category, subcategory: removedCategory });
+  };
+
+  const onClick = () => {
+    window._dataHub.dataHubService.setSiteName("myauto" as any);
+
+    window._dataHub.dataHubService.setCategory({
+      mainCategory: category.mainCategory,
+      subcategory: category.subcategory,
+    });
   };
 
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
         <ul className={styles.menu}>
-          <li
-            className={styles.link}
-            onMouseEnter={handleSubmenuOpen}
-            onMouseLeave={handleSubmenuClose}
-          >
-            <Link to="/Technology" style={{ color: "#FFF" }}>
-              ტექნიკა
-            </Link>
-            {isSubmenuOpen && (
-              <ul className={styles.dropdownMenu}>
-                <li
-                  onMouseEnter={() => handleOpenSubcategory("mobiles")}
-                  onMouseLeave={() => handleCloseSubcategory("mobiles")}
-                >
-                  <Link to="/Technology/mobiles">მობილურები</Link>
-                  {subcategory.category === "mobiles" && subcategory.open && (
-                    <ul className={styles.dropdown}>
-                      <li>
-                        <Link to="/Technology/mobiles/accsorsies">
-                          აქსესუარები და ნაწილები
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/Technology/mobiles/phones">
-                          მობილური ტელეფონი
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/Technology/mobiles/gps">GPS ნავიგატორი</Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-                <li
-                  onMouseEnter={() => handleOpenSubcategory("computers")}
-                  onMouseLeave={() => handleCloseSubcategory("computers")}
-                >
-                  <Link to="/Technology/computers">
-                    კომპიუტერები, აქსესუარები
-                  </Link>
-                  {subcategory.category === "computers" && subcategory.open && (
-                    <ul>
-                      <li>
-                        <Link to="/Technology/computers/laptops">
-                          ლეპტოპები
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/Technology/computers/pc">კომპიუტერები</Link>
-                      </li>
-                      <li>
-                        <Link to="/Technology/computers/pc">მაუსები</Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              </ul>
-            )}
-          </li>
-          <li
-            onMouseEnter={() => handleOpenSubcategory("music")}
-            onMouseLeave={() => handleCloseSubcategory("music")}
-          >
-            <Link to="/music" style={{ color: "#FFF" }}>
-              მუსიკა
-            </Link>
-            {subcategory.category === "music" && subcategory.open && (
-              <ul className={styles.dropdownMenu}>
-                <li>
-                  <Link to="music/vinils">მუსიკალური ფირფიტები</Link>
-                </li>
-                <li>
-                  <Link to="music/instruments">მუსიკალური ინსტრუმენტები</Link>
-                </li>
-              </ul>
-            )}
-          </li>
-          <li>
-            <Link to="/books" style={{ color: "#FFF" }}>
-              წიგნები
-            </Link>
-          </li>
-          <li>
-            <Link to="/clothes" style={{ color: "#FFF" }}>
-              ტანსაცმელები
-            </Link>
-          </li>
+          {Object.entries(categories).map(([category, subcategories]) => (
+            <li
+              key={category}
+              className={styles.link}
+              onMouseEnter={() => handleCategoryOpen(category)}
+              onMouseLeave={handleCategoryClose}
+            >
+              <Link to={`/category/${category}`} style={{ color: "#FFF" }}>
+                {category}
+              </Link>
+              {mainCategory === category && (
+                <ul className={styles.dropdownMenu}>
+                  {Object.keys(subcategories).map((subcategory) => (
+                    <li
+                      key={subcategory}
+                      onMouseEnter={() => handleSubcategoryOpen(subcategory)}
+                      onMouseLeave={() => handleSubcategoryClose(subcategory)}
+                    >
+                      <Link
+                        to={`/category/${category}/${subcategory}`}
+                        onClick={onClick}
+                      >
+                        {subcategory}
+                      </Link>
+                      {subcategoryMenu.category === subcategory &&
+                        subcategoryMenu.open && (
+                          <ul className={styles.subsubmenu}>
+                            {subcategories[subcategory].map(
+                              (subsubcategory) => (
+                                <li
+                                  key={subsubcategory}
+                                  onMouseEnter={() =>
+                                    handleSubSubCategoryOpen(subsubcategory)
+                                  }
+                                  onMouseLeave={() =>
+                                    handleSubSubCategoryClose(subsubcategory)
+                                  }
+                                >
+                                  <Link
+                                    to={`/category/${category}/${subcategory}/${subsubcategory}`}
+                                    onClick={onClick}
+                                  >
+                                    {subsubcategory}
+                                  </Link>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
         <SearchBar />
       </div>

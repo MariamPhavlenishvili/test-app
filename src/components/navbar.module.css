@@ -12,14 +12,10 @@
   margin: auto;
 }
 
-.nav ul li ul {
-}
-
 .menu {
   display: flex;
-  width: 1200px;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   color: #fff;
 
   position: relative;
@@ -30,12 +26,14 @@
 }
 
 .dropdownMenu {
-  margin-top: 20%;
+  position: fixed;
+  width: 150px;
   background-color: #fff;
 }
 
 .dropdownMenu li {
-  padding: 3px;
+  padding: 5px;
+  margin: 0 auto;
 }
 
 .nav a {
@@ -43,5 +41,13 @@
 }
 
 .nav a:hover {
-  color: #B2D3A8;
+  color: #b2d3a8;
+}
+
+.nav a:active {
+  color: #777;
+}
+
+.subsubmenu a {
+  color: #777;
 }

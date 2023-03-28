@@ -3,6 +3,11 @@ export interface IConsent {
   fingerprintTracking?: boolean;
 }
 
+export interface ICategory {
+  mainCategory?: string,
+  subcategory?: string[]
+}
+
 export enum SiteName {
   MyAuto = "myauto",
   MyHome = "myhome",
@@ -25,7 +30,7 @@ export interface IDataHubService {
   setSearchQuery(searchQuery: string): null | string;
   getSearchQuery(): null | string;
   clearSearchQuery(): boolean;
-  setCategory(category: null | string[]): null | string[];
+  setCategory(category: null | ICategory): null | string[];
   getCategory(): null | string[];
   clearCategory(): boolean;
 }
