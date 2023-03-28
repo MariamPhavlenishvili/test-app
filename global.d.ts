@@ -4,8 +4,8 @@ export interface IConsent {
 }
 
 export interface ICategory {
-  mainCategory?: string,
-  subcategory?: string[]
+  mainCategory?: string;
+  subcategory?: string[];
 }
 
 export enum SiteName {
@@ -14,13 +14,17 @@ export enum SiteName {
 }
 
 export type AppVersion = `${number}.${number}.${number}`;
+export interface ICategory {
+  mainCategory: string;
+  subcategory: string[];
+}
 
-export interface IDataHubService {
+declare class DataHubService {
   readonly appVersion: AppVersion;
   readonly $consent: BehaviorSubject<IConsent | null>;
   readonly $siteName: BehaviorSubject<SiteName | null>;
   readonly $searchQuery: BehaviorSubject<string | null>;
-  readonly $categories: BehaviorSubject<string[] | null>;
+  readonly $category: BehaviorSubject<ICategory | null>;
   setConsent(options: IConsent): null | IConsent;
   getConsent(): null | IConsent;
   clearConsent(): boolean;
@@ -30,8 +34,8 @@ export interface IDataHubService {
   setSearchQuery(searchQuery: string): null | string;
   getSearchQuery(): null | string;
   clearSearchQuery(): boolean;
-  setCategory(category: null | ICategory): null | string[];
-  getCategory(): null | string[];
+  setCategory(category: null | ICategory): null | ICategory;
+  getCategory(): null | ICategory;
   clearCategory(): boolean;
 }
 
