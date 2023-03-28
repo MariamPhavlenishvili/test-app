@@ -5,7 +5,8 @@ export interface IConsent {
 
 export interface ICategory {
   mainCategory?: string;
-  subcategory?: string[];
+  subCategory?: string | null;
+  subSubCategory?: string | null;
 }
 
 export enum SiteName {
