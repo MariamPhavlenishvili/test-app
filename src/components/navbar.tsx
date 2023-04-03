@@ -4,6 +4,7 @@ import SearchBar from "./search";
 
 import styles from "./navbar.module.css";
 import { categories } from "../menu/categories";
+import { dataHubService, SiteName } from "data-hub";
 
 interface Category {
   mainCategory: string;
@@ -48,9 +49,9 @@ const Navbar = () => {
 
   const onClick = (subsubCategory: string | null) => {
     console.log(category.mainCategory);
-    window._dataHub.dataHubService.setSiteName("myauto" as any);
+    dataHubService.setSiteName(SiteName.MyAuto);
 
-    const tracking = window._dataHub.dataHubService.setCategory({
+    const tracking = dataHubService.setCategory({
       mainCategory: category.mainCategory,
       subCategory: category.subCategory ? category.subCategory : null,
       subSubCategory: subsubCategory ? subsubCategory : null,

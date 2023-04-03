@@ -14,8 +14,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "data-hub": ["data-hub"]
+    }
   },
-  "include": ["src"],
-  "files": ["global.d.ts"]
+  "include": ["src"]
 }
