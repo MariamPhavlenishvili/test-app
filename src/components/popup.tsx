@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import styles from "./popup.module.css";
 import CloseIcon from "@mui/icons-material/Close";
-import { dataHubService, SiteName } from "data-hub";
+import { dataHubService } from "data-hub";
 
 interface conditionsObject {
   mouseTracking: boolean;
@@ -39,7 +39,6 @@ const Popup = ({}) => {
   };
 
   const onAgreeButtonClick = () => {
-    dataHubService.setSiteName(SiteName.MyAuto);
     dataHubService.setConsent({
       mouseTracking: agreeConditions.mouseTracking,
       fingerprintTracking: agreeConditions.fingerprintTracking,
