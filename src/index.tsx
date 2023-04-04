@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { dataHubService, SiteName } from "data-hub";
 
-dataHubService.init(SiteName.MyAuto);
+dataHubService.init(SiteName.MyAuto, true);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
