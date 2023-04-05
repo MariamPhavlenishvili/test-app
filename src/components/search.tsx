@@ -8,12 +8,12 @@ function SearchBar() {
   const [keyword, setKeyword] = useState("");
 
   const onChange = (value: string) => {
-    dataHubService.setSearchQuery(value);
+    dataHubService.sendSearchQuery(value);
     setKeyword(value);
   };
 
   const onSearch = () => {
-    dataHubService.setSearchQuery(keyword);
+    dataHubService.sendSearchQuery(keyword);
   };
 
   return (

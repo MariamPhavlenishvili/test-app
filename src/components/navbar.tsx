@@ -50,7 +50,7 @@ const Navbar = () => {
   const onClick = (subsubCategory: string | null) => {
     console.log(category.mainCategory);
 
-    const tracking = dataHubService.setCategory({
+    const tracking = dataHubService.sendCategory({
       mainCategory: category.mainCategory,
       subCategory: category.subCategory ? category.subCategory : null,
       subSubCategory: subsubCategory ? subsubCategory : null,
