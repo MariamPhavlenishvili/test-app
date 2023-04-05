@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { dataHubService, SiteName } from "data-hub";
+import { dataHubService, PlatformName } from "data-hub";
 
-dataHubService.activate(SiteName.MyAuto, true);
+dataHubService.activate(PlatformName.MyAuto, true);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
