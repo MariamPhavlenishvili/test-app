@@ -4,7 +4,6 @@ import SearchBar from "./search";
 
 import styles from "./navbar.module.css";
 import { categories } from "../menu/categories";
-import { dataHubService } from "data-hub";
 
 interface Category {
   mainCategory: string;
@@ -47,18 +46,6 @@ const Navbar = () => {
     setSubcategoryMenu({ category: subCategoryName, open: false });
   };
 
-  const onClick = (subsubCategory: string | null) => {
-    console.log(category.mainCategory);
-
-    const tracking = dataHubService.sendCategory({
-      mainCategory: category.mainCategory,
-      subCategory: category.subCategory ? category.subCategory : null,
-      subSubCategory: subsubCategory ? subsubCategory : null,
-    });
-
-    console.log(tracking);
-  };
-
   return (
     <nav className={styles.nav}>
       <div className={styles.container}>
@@ -81,10 +68,7 @@ const Navbar = () => {
                       onMouseEnter={() => handleSubcategoryOpen(subcategory)}
                       onMouseLeave={() => handleSubcategoryClose(subcategory)}
                     >
-                      <Link
-                        to={`/category/${category}/${subcategory}`}
-                        onClick={() => onClick(null)}
-                      >
+                      <Link to={`/category/${category}/${subcategory}`}>
                         {subcategory}
                       </Link>
                       {subcategoryMenu.category === subcategory &&
@@ -103,7 +87,6 @@ const Navbar = () => {
                                 >
                                   <Link
                                     to={`/category/${category}/${subcategory}/${subsubcategory}`}
-                                    onClick={() => onClick(subsubcategory)}
                                   >
                                     {subsubcategory}
                                   </Link>

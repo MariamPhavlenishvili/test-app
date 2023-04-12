@@ -2,18 +2,18 @@ import { useState } from "react";
 import styles from "./search.module.css";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { dataHubService } from "data-hub";
+import { dataHubService, EventType } from "data-hub";
 
 function SearchBar() {
   const [keyword, setKeyword] = useState("");
 
   const onChange = (value: string) => {
-    dataHubService.sendSearchQuery(value);
+    dataHubService.sendClickStream(value, EventType.SearchQuery);
     setKeyword(value);
   };
 
   const onSearch = () => {
-    dataHubService.sendSearchQuery(keyword);
+    dataHubService.sendClickStream(keyword, EventType.SearchQuery);
   };
 
   return (
