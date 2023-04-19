@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import styles from "./popup.module.css";
 import CloseIcon from "@mui/icons-material/Close";
-import { dataHubService } from "tnet-clickstream-connector";
+import { dataHubService, IConsent } from "tnet-clickstream-connector";
 
 interface conditionsObject {
   mouseTracking: boolean;
@@ -39,10 +39,11 @@ const Popup = ({}) => {
   };
 
   const onAgreeButtonClick = () => {
-    dataHubService.setConsent({
+    const consent: IConsent = {
       mouseTracking: agreeConditions.mouseTracking,
       fingerprintTracking: agreeConditions.fingerprintTracking,
-    });
+    };
+    dataHubService.setConsent(consent);
 
     setClose(!close);
   };
