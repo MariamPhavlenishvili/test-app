@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from "./search.module.css";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { dataHubService, EventType } from "tnet-clickstream-connector";
+// import { dataHubService, EventType } from "tnet-clickstream-connector";
+import { dataHubService, EventType } from "tnet-clickstream-connector-local";
 
 function SearchBar() {
   const [keyword, setKeyword] = useState("");

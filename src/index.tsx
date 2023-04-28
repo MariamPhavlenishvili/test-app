@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { dataHubService } from "tnet-clickstream-connector";
+// import { dataHubService } from "tnet-clickstream-connector";
+import { dataHubService } from "tnet-clickstream-connector-local";
 
 dataHubService.activate(true);
 
