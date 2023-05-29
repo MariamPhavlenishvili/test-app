@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import styles from "./popup.module.css";
 import CloseIcon from "@mui/icons-material/Close";
-// import { dataHubService, IConsent } from "tnet-clickstream-connector";
-import { dataHubService, IConsent } from "tnet-clickstream-connector-local";
+import { dataHubService, IConsent } from "tnet-clickstream-connector";
+// import { dataHubService, IConsent } from "tnet-clickstream-connector-local";
 
 interface conditionsObject {
   mouseTracking: boolean;
