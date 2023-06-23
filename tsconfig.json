@@ -17,9 +17,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "tnet-clickstream-connector-local": ["tnet-clickstream-connector-local"]
+      "dps-local": ["dps-local"]
     }
   },
   "include": ["src"]
-  
 }

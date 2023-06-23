@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { dataHubService } from "tnet-clickstream-connector";
-// import { dataHubService } from "tnet-clickstream-connector-local";
+// import { dataHubService } from "@tnet/dps";
+import { dps } from "dps-local";
 
-dataHubService.activate(true);
+dps.activate(true);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

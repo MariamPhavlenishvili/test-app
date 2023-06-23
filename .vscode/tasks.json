@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "copy-tnet-clickstream-connector",
+      "label": "copy-dps",
       "type": "shell",
-      "command": "cp ../tnet-clickstream-connector/dist/tnet-clickstream-connector.esm.min.d.ts ./src/tnet-clickstream-connector-local/index.d.ts && cp ../tnet-clickstream-connector/dist/tnet-clickstream-connector.esm.min.js ./src/tnet-clickstream-connector-local/index.js",
+      "command": "cp ../dps/dist/dps.d.ts ./src/dps-local/index.d.ts && cp ../dps/dist/dps.esm.min.js ./src/dps-local/index.js",
       "presentation": {
         "reveal": "always",
         "panel": "shared"
