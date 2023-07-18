@@ -3,10 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import { dataHubService } from "@tnet/dps";
+// import { dps } from "@tnet/dps";
 import { dps } from "dps-local";
 
 dps.activate(true);
+(async () => {
+  // for (let i = 0; i < 10_000; i++) console.log(i);
+})();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

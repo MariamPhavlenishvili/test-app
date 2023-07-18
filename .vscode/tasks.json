@@ -4,7 +4,7 @@
     {
       "label": "copy-dps",
       "type": "shell",
-      "command": "cp ../dps/dist/dps.d.ts ./src/dps-local/index.d.ts && cp ../dps/dist/dps.esm.min.js ./src/dps-local/index.js",
+      "command": "cp ../dps/dist/dps.d.ts ./src/dps-local/index.d.ts && cp ../dps/dist/dps.esm.js ./src/dps-local/index.js",
       "presentation": {
         "reveal": "always",
         "panel": "shared"
