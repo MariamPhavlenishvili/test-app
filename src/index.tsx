@@ -7,9 +7,6 @@ import reportWebVitals from "./reportWebVitals";
 import { dps } from "dps-local";
 
 dps.activate(true);
-(async () => {
-  // for (let i = 0; i < 10_000; i++) console.log(i);
-})();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
